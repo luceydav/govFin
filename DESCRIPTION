@@ -21,4 +21,9 @@ Imports:
     DBI,
     data.table,
     glue,
-    stringr
+    stringr,
+    RSQLite,
+    here,
+    janitor,
+    ggplot2,
+    plotly
