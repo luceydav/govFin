@@ -1,0 +1,41 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# govFin
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of govFin is to offer tools to download, convert to a SQLite database and explore the [Willamette Government Finance Database](https://willamette.edu/mba/research-impact/public-datasets/index.html), a cleaned and aggregated version of the annual [Census Bureau Census of Governments](https://www.census.gov/programs-surveys/cog.html) data.
+
+## Installation
+
+The development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("luceydav/govFin")
+```
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+#library(govFin)
+## basic example code
+```
+
+
+TODO
