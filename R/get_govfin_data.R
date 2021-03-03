@@ -17,7 +17,7 @@ get_govfin_data <- function(path = "inst/extdata"){
   url <- "https://willamette.edu/~kpierson/TheGovernmentFinanceDatabase_AllData.zip"
 
   # Create dir in working dir to store downloaded zip
-  dir.create(here::here(path))
+  if (!dir.exists(here::here(path)) ) dir.create(here::here(path))
 
   # Set path to zip
   zip_file <- here::here(path, "gov_fin.zip")

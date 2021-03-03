@@ -4,7 +4,7 @@
 \alias{make_sqlite_table}
 \title{Function to subset of gov_census and loads into database}
 \usage{
-make_sqlite_table(conn = conn, data = gov_census, type, name, index = "")
+make_sqlite_table(conn = conn, data = gov_census, type, name, index = "id")
 }
 \arguments{
 \item{conn}{Database connection}

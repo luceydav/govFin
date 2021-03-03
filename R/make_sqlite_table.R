@@ -17,24 +17,27 @@
 #' make_sqlite_table(type = c("2", "3"), name = "local", index = "id")}
 #'
 #' @export
-make_sqlite_table <- function(conn = conn, data = gov_census, type, name, index = "") {
+make_sqlite_table <- function(conn = conn, data = gov_census, type, name, index = "id") {
 
   # Check if type is a vector
-  if ( length(type) == 1 ) type <- c(type)
+  if ( length(type) == 1 ) type <- list(type)
 
   # Subset to needed columns
   keeps <-
-    names(which(apply(data[type_code %in% type, -c(1:14), with = FALSE], 2, sum) > 0))
+    names(which(apply(data[type_code %in% type, -c(1:16), with = FALSE], 2, sum) > 0))
   ids <- names(data)[c(1:2, 11, 13:14)]
   data <-
     data[type_code %in% type, .SD, .SDcols = c(ids, keeps)]
 
-  # Set up table
+  # Set up table if doesn't exist
   if ( !DBI::dbExistsTable(conn, name) ) {
     DBI::dbCreateTable(conn, name, data)
-  }
-  if ( index != "" ) {
     DBI::dbExecute(conn, glue::glue("CREATE INDEX {name}_id ON {name} ({index})"))
+    DBI::dbAppendTable(conn, name, data, overwrite = TRUE)
+  } else {
+    # Add up if exists
+    print(paste(name, "-second_pass"))
+    DBI::dbAppendTable(conn, name, data, append = TRUE)
+    print(paste(name, "-second_pass_done"))
   }
-  DBI::dbWriteTable(conn, name, data, append = TRUE)
 }

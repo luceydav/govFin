@@ -16,8 +16,11 @@
 #' @export
 create_sqlite_id <- function(conn = conn, data = gov_census) {
 
+  # Separate id data
   ids <- names(data)[c(1, 3:10)]
   id_cols <- unique(data[, ids, with = FALSE], by = "id")
+
+  # Add id_cols table
   DBI::dbCreateTable(conn, "id_cols", id_cols)
   DBI::dbExecute(conn, "CREATE UNIQUE INDEX unique_id ON id_cols (id)")
   DBI::dbWriteTable(conn, "id_cols", id_cols, append = TRUE)

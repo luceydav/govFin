@@ -4,7 +4,10 @@
 \alias{make_sqlite_db}
 \title{Function builds SQLite database from Census Type Codes (ie: Federal, State, etc)}
 \usage{
-make_sqlite_db()
+make_sqlite_db(data = gov_census)
+}
+\arguments{
+\item{data}{Census data.table}
 }
 \description{
 Loads the .csv download as data.table, separates identifying columns
