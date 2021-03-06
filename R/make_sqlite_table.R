@@ -36,8 +36,6 @@ make_sqlite_table <- function(conn = conn, data = gov_census, type, name, index 
     DBI::dbAppendTable(conn, name, data, overwrite = TRUE)
   } else {
     # Add up if exists
-    print(paste(name, "-second_pass"))
     DBI::dbAppendTable(conn, name, data, append = TRUE)
-    print(paste(name, "-second_pass_done"))
   }
 }

@@ -24,7 +24,7 @@ make_sqlite_db <- function(data = gov_census) {
   conn <- DBI::dbConnect(RSQLite::SQLite(), "inst/extdata/gov_census.db")
 
   # Build database
-  codes <- list(0, 1, 2, list(3, 4) , 5, 6)
+  codes <- list(0, 1, list(2, 3), 4 , 5, 6)
   table_names <- list("state", "county", "local", "special", "school", "federal")
   mapply(
     make_sqlite_table,
@@ -35,6 +35,9 @@ make_sqlite_db <- function(data = gov_census) {
 
   # Add identifier columns table as id_cols
   create_sqlite_id(conn = conn, data = data)
+
+  # Add population table
+  make_popu_table(conn = conn, data = data)
 
   # Disconnect db
   DBI::dbDisconnect(conn)
