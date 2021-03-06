@@ -2,8 +2,10 @@
 
 export(create_sqlite_id)
 export(full_gov_census_db_wrapper)
+export(get_chart_data)
 export(get_govfin_data)
 export(load_and_clean_govcensus_csv)
+export(make_popu_table)
 export(make_sqlite_db)
 export(make_sqlite_table)
 export(unzip_govfin_data)
