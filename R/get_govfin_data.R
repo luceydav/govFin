@@ -11,7 +11,7 @@
 #' get_govfin_data(path = "data") }
 #'
 #' @export
-get_govfin_data <- function(path = "inst/extdata"){
+get_govfin_data <- function(path = "data"){
 
   #https://willamette.edu/mba/research-impact/public-datasets/index.html
   url <- "https://willamette.edu/~kpierson/TheGovernmentFinanceDatabase_AllData.zip"

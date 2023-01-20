@@ -11,7 +11,7 @@
 #' unzip_govfin_data(path = "data") }
 #'
 #' @export
-unzip_govfin_data <- function(path = "inst/extdata"){
+unzip_govfin_data <- function(path = "data"){
 
   #https://willamette.edu/mba/research-impact/public-datasets/index.html
 

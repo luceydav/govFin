@@ -12,7 +12,7 @@
 #' @export
 full_gov_census_db_wrapper <- function(){
   get_govfin_data()
-  unzip_govfin_data(path = "inst/extdata")
-  gov_census <- load_and_clean_govcensus_csv(path = "inst/extdata")
+  unzip_govfin_data(path = "data")
+  gov_census <- load_and_clean_govcensus_csv(path = "data")
   make_sqlite_db(data = gov_census)
 }

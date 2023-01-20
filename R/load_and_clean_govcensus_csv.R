@@ -10,7 +10,7 @@
 #' load_and_clean_govcensus_csv(path = "data")}
 #'
 #' @export
-load_and_clean_govcensus_csv <- function(path = "inst/extdata") {
+load_and_clean_govcensus_csv <- function(path = "data") {
 
   # Load with fread
   if ( stringr::str_detect(getwd(), "vignette") ) {

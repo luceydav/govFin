@@ -21,7 +21,7 @@ make_sqlite_db <- function(data = gov_census) {
   gov_census <- load_and_clean_govcensus_csv()
 
   # Connect to database
-  conn <- DBI::dbConnect(RSQLite::SQLite(), "inst/extdata/gov_census.db")
+  conn <- DBI::dbConnect(RSQLite::SQLite(), "data/gov_census.db")
 
   # Build database
   codes <- list(0, 1, list(2, 3), 4 , 5, 6)
@@ -43,6 +43,6 @@ make_sqlite_db <- function(data = gov_census) {
   DBI::dbDisconnect(conn)
 
   # Clean up disc
-  file.remove("inst/extdata/gov_fin_data.csv")
+  file.remove("data/gov_fin_data.csv")
 
 }
