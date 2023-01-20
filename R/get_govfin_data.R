@@ -23,6 +23,8 @@ get_govfin_data <- function(path = "data"){
   zip_file <- here::here(path, "gov_fin.zip")
 
   # Download file
+  options(timeout = 400)
   download.file(url, destfile = zip_file)
+  options(timeout = 60)
 
 }
