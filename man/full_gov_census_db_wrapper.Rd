@@ -4,7 +4,14 @@
 \alias{full_gov_census_db_wrapper}
 \title{Wrapper for all full data prep process}
 \usage{
-full_gov_census_db_wrapper()
+full_gov_census_db_wrapper(path = "data", time = 1000, connect = "duckdb")
+}
+\arguments{
+\item{path}{Folder in working dir to store data}
+
+\item{time}{Timeout set 1000 seconds because default 60 too short}
+
+\item{connect}{Type of connection ("duckdb" or "sqlite")}
 }
 \description{
 Runs get_govfin_data(), unzip_govfin_data(), load_and_clean_govcensus_csv(),
@@ -12,6 +19,6 @@ then make_db() builds database in datawith make_table()
 }
 \examples{
 \dontrun{
-load_and_clean_govcensus_csv(path = "data")}
+full_gov_census_db_wrapper(time = 1000, path = "data")}
 
 }
