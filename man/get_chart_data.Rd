@@ -4,14 +4,14 @@
 \alias{get_chart_data}
 \title{Function takes variable arguments and returns data for table}
 \usage{
-get_chart_data(conn, table, fields)
+get_chart_data(table, fields, popu = FALSE, state = list(1:51))
 }
 \arguments{
-\item{conn}{Database connection}
-
 \item{table}{Name of table}
 
 \item{fields}{Vector of all fields}
+
+\item{conn}{Database connection}
 }
 \description{
 With input of table and fields, returns a data.frame

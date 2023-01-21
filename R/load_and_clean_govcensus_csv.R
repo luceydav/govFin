@@ -9,12 +9,15 @@
 #' \dontrun{
 #' load_and_clean_govcensus_csv(path = "data")}
 #'
+#' @import data.table
+#' @importFrom janitor clean_names
+#' @importFrom re2 re2_replace re2_detect
+#'
 #' @export
 load_and_clean_govcensus_csv <- function(path = "data") {
 
-
   # Load with fread
-  if ( re2::re2_detect(getwd(), "vignette") ) {
+  if (re2::re2_detect(getwd(), "vignette")) {
 
     gov_census <-
       data.table::fread(gsub("vignettes/", "", here::here(path, "gov_fin_data.csv"))
@@ -31,7 +34,8 @@ load_and_clean_govcensus_csv <- function(path = "data") {
   }
 
   # Clean names
-  names(gov_census)[1:5] <- c("govs_id", "fips_id", "year", "state", "type")
+  names(gov_census)[1:5] <-
+    c("govs_id", "fips_id", "year", "state", "type")
   gov_census <- janitor::clean_names(gov_census)
 
   # Move id cols to left
@@ -53,7 +57,7 @@ load_and_clean_govcensus_csv <- function(path = "data") {
   id_cols <- setdiff(
     id_cols,
     c("year_pop", "fy_end_date", "sch_lev_code", "function_code", "year"))
-  convert_missing <- function(row) fifelse(row == "", NA_character_, row)
+  convert_missing <- function(row) data.table::fifelse(row == "", NA_character_, row)
   gov_census[
     , (id_cols) := lapply(.SD, convert_missing)
     , .SDcols = id_cols]
@@ -70,17 +74,22 @@ load_and_clean_govcensus_csv <- function(path = "data") {
 
   # Split into lists and name
   drops <- setdiff(id_cols, c("govs_id", "type"))
-  drops <- c(drops, "population", "year_pop", "enrollment")
+  drops <-
+    c(drops, "population", "year_pop", "enrollment")
   gov_census <-
     gov_census[, .SD, .SDcols = !drops]
-  gov_census[, type := fifelse(type == "3", "2", type)]
-  gov_census_list <- split(gov_census, by = "type", keep.by = FALSE)
+  gov_census[
+    , type := data.table::fifelse(type == "3", "2", type)]
+  gov_census_list <-
+    split(gov_census, by = "type", keep.by = FALSE)
   names(gov_census_list) <-
     c("state", "county", "local", "special", "school", "federal")
 
   # Function to drop cols which sum to zero
   drop_all_empty <- function(data) {
-    drops <- data[, which(colSums(.SD, na.rm = TRUE) == 0), .SDcols = is.numeric]
+    drops <- data[
+      , which(colSums(.SD, na.rm = TRUE) == 0)
+      , .SDcols = is.numeric]
     data <- data[, .SD, .SDcols = !drops]
     return(data)
   }

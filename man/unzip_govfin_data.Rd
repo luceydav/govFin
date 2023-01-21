@@ -4,7 +4,7 @@
 \alias{unzip_govfin_data}
 \title{Function to extract and rename .csv from downloaded zipped folder}
 \usage{
-unzip_govfin_data(path = "inst/extdata")
+unzip_govfin_data(path = "data")
 }
 \arguments{
 \item{path}{Folder in working dir where zip is stored}

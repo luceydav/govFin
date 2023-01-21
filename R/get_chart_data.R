@@ -15,10 +15,14 @@
 #'   table = table,
 #'   fields = c("total_revenue", "total_taxes"))}
 #'
+#' @import duckdb
+#' @import RSQLite
+#' @import DBI
+#'
 #' @export
 get_chart_data <- function(table, fields, popu = FALSE, state = list(1:51)) {
 
-  conn <- DBI::dbConnect(RSQLite::SQLite(), here::here("inst/extdata/gov_census.db"))
+  conn <- DBI::dbConnect(RSQLite::SQLite(), here::here("data/gov_census.db"))
   on.exit(DBI::dbDisconnect(conn), add = TRUE)
 
   # Set default fields
@@ -68,13 +72,13 @@ get_chart_data <- function(table, fields, popu = FALSE, state = list(1:51)) {
   if (popu == TRUE) {
     # Query
     query <- glue::glue_sql(
-      "SELECT p.year4
+      "SELECT p.year
               ,p.population
               ,p.enrollment
               ,p.id
-      FROM popu AS p
-      LEFT JOIN id_cols AS i
-      ON i.id = p.id",
+      FROM population AS p
+      LEFT JOIN ids AS i
+      ON i.govs_id = p.govs_id",
       .con = conn)
     resp <- DBI::dbSendQuery(conn, query)
     pop <- DBI::dbFetch(resp, n = -1)

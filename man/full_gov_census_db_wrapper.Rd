@@ -8,8 +8,7 @@ full_gov_census_db_wrapper()
 }
 \description{
 Runs get_govfin_data(), unzip_govfin_data(), load_and_clean_govcensus_csv(),
-then make_sqlite_db() builds database in inst/extdata with
-make_sqlite_table() and create_sqlite_id()
+then make_db() builds database in datawith make_table()
 }
 \examples{
 \dontrun{

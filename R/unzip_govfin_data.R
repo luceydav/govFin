@@ -10,6 +10,8 @@
 #' \dontrun{
 #' unzip_govfin_data(path = "data") }
 #'
+#' @importFrom utils unzip
+#'
 #' @export
 unzip_govfin_data <- function(path = "data"){
 
@@ -26,8 +28,10 @@ unzip_govfin_data <- function(path = "data"){
     unzip = getOption("unzip"),
     exdir = path)
 
-  file.rename(from = paste0(path, "/", list.files(path, pattern=".csv")),
-              to = paste0(path, "/", "gov_fin_data.csv"))
+  file.rename(
+    from = paste0(path, "/", list.files(path, pattern=".csv")),
+    to = paste0(path, "/", "gov_fin_data.csv")
+    )
 
 
 }

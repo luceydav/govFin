@@ -4,10 +4,12 @@
 \alias{get_govfin_data}
 \title{Function to download multiple file zipped folder from Willamette}
 \usage{
-get_govfin_data(path = "inst/extdata")
+get_govfin_data(path = "data", time = 1000)
 }
 \arguments{
 \item{path}{Folder in working dir to store data}
+
+\item{time}{Timeout set 1000 seconds because default 60 too short}
 }
 \description{
 Downloads full zipped folder from Willamette including data in csv and documentation files

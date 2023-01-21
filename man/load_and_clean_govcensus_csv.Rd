@@ -4,7 +4,7 @@
 \alias{load_and_clean_govcensus_csv}
 \title{Function to load downloaded, unpacked .csv and prepare for database}
 \usage{
-load_and_clean_govcensus_csv(path = "inst/extdata")
+load_and_clean_govcensus_csv(path = "data")
 }
 \arguments{
 \item{path}{Location to store data}
